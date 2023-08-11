@@ -108,15 +108,5 @@ export function TeamsTable(props: Props) {
 export function TeamsTableWrapper() {
   let teams: Team[] = [];
 
-  return (
-    <>
-      <TeamsTable loading={true} teams={[]} />
-      <br />
-      <TeamsTable loading={false} teams={[]} />
-      <br />
-      <TeamsTable loading={true} teams={teams} />
-      <br />
-      <TeamsTable loading={false} teams={teams} />
-    </>
-  );
+  return <TeamsTable loading={false} teams={teams} />;
 }
