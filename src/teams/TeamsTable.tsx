@@ -1,5 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
-function TeamRow(team) {
+function TeamRow(props) {
+  const team = props.team;
   // const id = team.id;
   // const url = team.url;
   const { id, url } = team;
@@ -55,7 +56,11 @@ export function TeamsTable(props) {
             <th></th>
           </tr>
         </thead>
-        <tbody>{props.teams.map(team => TeamRow(team))}</tbody>
+        <tbody>
+          {props.teams.map(team => (
+            <TeamRow team={team} />
+          ))}
+        </tbody>
         <tfoot>
           <tr>
             <td></td>
@@ -126,7 +131,7 @@ export function TeamsTableWrapper() {
     <>
       <TeamsTable loading={true} teams={[]} />
       <br />
-      <TeamsTable loading={false} teams={[]} />
+      {TeamsTable({ loading: false, teams: [] })}
       <br />
       <TeamsTable loading={true} teams={teams} />
       <br />
