@@ -1,6 +1,15 @@
 /* eslint-disable no-template-curly-in-string */
-function TeamRow(props) {
-  const team = props.team;
+type Team = {
+  id: string;
+  promotion: string;
+  members: string;
+  name: string;
+  url: string;
+  createdBy?: string;
+};
+
+function TeamRow(props: { team: Team }) {
+  const team: Team = props.team;
   // const id = team.id;
   // const url = team.url;
   const { id, url } = team;
@@ -30,7 +39,12 @@ function TeamRow(props) {
   );
 }
 
-export function TeamsTable(props) {
+type Props = {
+  loading: boolean;
+  teams: Team[];
+};
+
+export function TeamsTable(props: Props) {
   console.info("table props", props);
 
   return (
@@ -58,7 +72,7 @@ export function TeamsTable(props) {
         </thead>
         <tbody>
           {props.teams.map(team => (
-            <TeamRow team={team} />
+            <TeamRow key={team.id} team={team} />
           ))}
         </tbody>
         <tfoot>
@@ -131,7 +145,7 @@ export function TeamsTableWrapper() {
     <>
       <TeamsTable loading={true} teams={[]} />
       <br />
-      {TeamsTable({ loading: false, teams: [] })}
+      <TeamsTable loading={false} teams={[]} />
       <br />
       <TeamsTable loading={true} teams={teams} />
       <br />
