@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 function TeamRow(team) {
   // const id = team.id;
   // const url = team.url;
@@ -28,7 +29,8 @@ function TeamRow(team) {
   );
 }
 
-export function TeamsTable() {
+export function TeamsTable(props) {
+  console.info("table", props.loading);
   const teams = [
     {
       id: "toze8j1610313009673",
@@ -67,7 +69,7 @@ export function TeamsTable() {
   console.info("render table", teams);
 
   return (
-    <form id="teamsForm" action="" method="get">
+    <form id="teamsForm" action="" method="get" className={props.loading ? "loading-mask" : ""}>
       <table id="teamsTable">
         <colgroup>
           <col className="select-all-column" />
